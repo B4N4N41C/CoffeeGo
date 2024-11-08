@@ -4,6 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+
+import java.util.List;
 
 @Entity
 public class User {
@@ -16,4 +20,8 @@ public class User {
     private String email;
     private boolean isCourier;
     private boolean isAdmin;
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
+    @OneToMany(mappedBy = "user")
+    private List<Product> products;
 }
