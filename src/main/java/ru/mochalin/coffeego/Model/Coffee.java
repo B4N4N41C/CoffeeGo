@@ -5,15 +5,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.util.List;
+
 @Entity
-public class User {
+public class Coffee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String phone;
-    private String password;
-    private String email;
-    private boolean isCourier;
-    private boolean isAdmin;
+    private String description;
+    private int price;
+    private List<Ingredient> ingredient;
 }
