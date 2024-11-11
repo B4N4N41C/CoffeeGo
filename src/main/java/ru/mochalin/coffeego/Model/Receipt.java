@@ -12,14 +12,14 @@ import jakarta.persistence.OneToMany;
 import java.util.List;
 
 @Entity
-public class Order {
+public class Receipt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @OneToMany(mappedBy = "order")
+    private long id;
+    @OneToMany(mappedBy = "receipt")
     private List<Product> products;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "сustomer_id")
+    private Сustomer сustomer;
     private double totalPrice;
 }
