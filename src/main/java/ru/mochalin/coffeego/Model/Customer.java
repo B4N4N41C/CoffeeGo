@@ -9,7 +9,7 @@ import jakarta.persistence.OneToMany;
 import java.util.List;
 
 @Entity
-public class Сustomer {
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

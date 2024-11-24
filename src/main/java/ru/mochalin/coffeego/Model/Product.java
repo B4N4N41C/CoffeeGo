@@ -26,5 +26,5 @@ public class Product {
     private Receipt receipt;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "сustomer_id")
-    private Сustomer сustomer;
+    private Customer сustomer;
 }

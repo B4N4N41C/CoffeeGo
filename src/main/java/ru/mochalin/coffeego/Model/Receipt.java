@@ -20,6 +20,6 @@ public class Receipt {
     private List<Product> products;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "сustomer_id")
-    private Сustomer сustomer;
+    private Customer сustomer;
     private double totalPrice;
 }
