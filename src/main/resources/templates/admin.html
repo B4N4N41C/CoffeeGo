@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <link href="/css/bootstrap.css" rel="stylesheet">
-    <title>Список товаров</title>
+    <title></title>
 </head>
 <body>
 <header>
@@ -30,18 +30,22 @@
         </div>
     </nav>
 </header>
-<div class="row row-cols-1 row-cols-md-2 g-4" th:each="product : ${products}">
+<a th:href="@{'/product/create'}" class="btn btn-primary">Создать</a>
+<div class="row row-cols-1 row-cols-md-1 g-4" th:each="product : ${products}">
     <div class="col">
         <div class="card">
-            <img th:src="${product.image}" class="card-img-top" th:alt="product.">
+            <img th:src="${product.image}" class="card-img-top" th:alt="${product.image}">
             <div class="card-body">
                 <h5 class="card-title" th:text="${product.name}"></h5>
                 <p class="card-text" th:text="${product.description}"></p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <a th:href="@{'/edit/' + ${product.id}}" class="btn btn-primary">edit</a>
             </div>
         </div>
     </div>
 </div>
+<footer>
+
+</footer>
 <script src="/js/bootstrap.js"></script>
 </body>
 </html>
