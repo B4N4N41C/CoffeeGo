@@ -22,4 +22,9 @@ public class MainController {
         model.addAttribute("products", productRepository.findAll());
         return "admin";
     }
+
+    @GetMapping("/card")
+    public String card(Model model) {
+        return "card";
+    }
 }

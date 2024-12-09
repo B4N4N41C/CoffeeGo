@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Card</title>
+    <link href="/css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Ваша корзина</h1>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">Товар</th>
+                <th scope="col">Цена</th>
+                <th scope="col">Количество</th>
+                <th scope="col">Итого</th>
+                <th scope="col">Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <img src="https://via.placeholder.com/100" alt="Товар 1" class="me-3">
+                        <span>Товар 1</span>
+                    </div>
+                </td>
+                <td>1000 ₽</td>
+                <td>
+                    <input type="number" class="form-control" value="1" min="1">
+                </td>
+                <td>1000 ₽</td>
+                <td>
+                    <button class="btn btn-danger">Удалить</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <img src="https://via.placeholder.com/100" alt="Товар 2" class="me-3">
+                        <span>Товар 2</span>
+                    </div>
+                </td>
+                <td>1500 ₽</td>
+                <td>
+                    <input type="number" class="form-control" value="1" min="1">
+                </td>
+                <td>1500 ₽</td>
+                <td>
+                    <button class="btn btn-danger">Удалить</button>
+                </td>
+            </tr>
+            <!-- Добавьте больше товаров по необходимости -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-flex justify-content-between mt-4">
+        <h3>Общая сумма: 2500 ₽</h3>
+        <button class="btn btn-primary">Перейти к оформлению</button>
+    </div>
+</div>
+<script src="/js/bootstrap.js"></script>
+</body>
+</html>

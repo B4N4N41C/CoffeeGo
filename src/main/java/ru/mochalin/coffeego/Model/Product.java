@@ -31,9 +31,6 @@ public class Product {
     @ManyToMany
     private List<Ingredient> ingredient;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "receipt_id")
-    private Receipt receipt;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "customer_id")
-    private Customer сustomer;
+    @JoinColumn(name = "bill_id")
+    private Bill bill;
 }

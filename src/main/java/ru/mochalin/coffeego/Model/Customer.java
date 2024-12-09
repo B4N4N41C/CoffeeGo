@@ -1,10 +1,6 @@
 package ru.mochalin.coffeego.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,7 +24,7 @@ public class Customer {
     private boolean isCourier;
     private boolean isAdmin;
     @OneToMany(mappedBy = "сustomer")
-    private List<Receipt> receipts;
-    @OneToMany(mappedBy = "сustomer")
+    private List<Bill> bills;
+    @ManyToMany
     private List<Product> products;
 }

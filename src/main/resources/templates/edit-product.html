@@ -7,6 +7,7 @@
 <body>
 <form action="#"  th:action="@{/edit}" th:object="${product}" method="post" enctype="multipart/form-data">
     <input type="hidden" th:field="*{id}">
+    <input type="hidden" id="image" th:field="*{image}" class="form-control">
 
     <div class="mb-3">
         <label for="name" class="form-label">Имя</label>
@@ -16,10 +17,7 @@
         <label for="name" class="form-label">Имя</label>
         <input type="text" id="description" th:field="*{description}" class="form-control" required>
     </div>
-
-    <input type="file" name="imageggg" accept="image/*" class="form-control-file">
-    <input type="hidden" id="image" th:field="*{image}" class="form-control">
-
+    <input type="file" name="imageProduct" accept="image/*" class="form-control-file">
     <div class="mb-3">
         <label for="name" class="form-label">Имя</label>
         <input type="text" id="ingredient" th:field="*{ingredient}" class="form-control" required>

@@ -18,7 +18,8 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
-    public static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/src/main/resources/static/img/products";
+    public static String PATH_IN_STATIC = "/img/products/";
+    public static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/src/main/resources/static" + PATH_IN_STATIC;
 
     @GetMapping("/edit/{id}")
     public String edit(Model model, @PathVariable("id") Long id) {
@@ -27,12 +28,10 @@ public class ProductController {
     }
 
     @PostMapping("/edit")
-    public String edit(Model model, @ModelAttribute("product") Product product, @RequestParam("imageggg") MultipartFile image) throws IOException {
-        StringBuilder fileNames = new StringBuilder();
+    public String edit(Model model, @ModelAttribute("product") Product product, @RequestParam("imageProduct") MultipartFile image) throws IOException {
+        product.setImage(PATH_IN_STATIC + image.getOriginalFilename());
         Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, image.getOriginalFilename());
-        fileNames.append(image.getOriginalFilename());
         Files.write(fileNameAndPath, image.getBytes());
-        product.setImage(image.getOriginalFilename());
         productRepository.save(product);
         return "redirect:/";
     }
@@ -42,4 +41,6 @@ public class ProductController {
         model.addAttribute("product", new Product());
         return "create-product";
     }
+
+    // TODO: Реализовать загрузку фото массивом байт потому, потому что позсле загрузки новой фотографии в static необходимо перезагружать сервер
 }

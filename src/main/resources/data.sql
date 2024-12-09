@@ -12,17 +12,17 @@ INSERT INTO ingredient (name, type) VALUES
                                         ('Молоко', 'Жидкий ингредиент'),
                                         ('Яблоки', 'Фрукты');
 
--- Заполнение таблицы receipt
-INSERT INTO receipt (customer_id, total_price) VALUES
+-- Заполнение таблицы bill
+INSERT INTO bill (customer_id, total_price) VALUES
                                                    (1, 1500.00),  -- Предполагаем, что ID покупателя 1
                                                    (2, 2000.00),  -- ID покупателя 2
                                                    (1, 3000.00);  -- ID покупателя 1
 
 -- Заполнение таблицы product
-INSERT INTO product (name, description, image, price, receipt_id, customer_id) VALUES
-                                                                                   ('Пирог', 'Вкусный яблочный пирог', 'image_pie.jpg', 500, 1, 1),  -- ID чека 1 и покупателя 1
-                                                                                   ('Торт', 'Шоколадный торт', 'image_cake.jpg', 700, 2, 2),      -- ID чека 2 и покупателя 2
-                                                                                   ('Кексы', 'Ванильные кексы', 'image_cupcakes.jpg', 300, 3, 1); -- ID чека 3 и покупателя 1
+INSERT INTO product (name, description, image, price, bill_id) VALUES
+                                                                                   ('Пирог', 'Вкусный яблочный пирог', 'image_pie.jpg', 500, 1),  -- ID чека 1 и покупателя 1
+                                                                                   ('Торт', 'Шоколадный торт', 'image_cake.jpg', 700, 2),      -- ID чека 2 и покупателя 2
+                                                                                   ('Кексы', 'Ванильные кексы', 'image_cupcakes.jpg', 300, 3); -- ID чека 3 и покупателя 1
 
 -- Заполнение связи между product и ingredient
 -- Предполагаем, что ID продукта: Пирог = 1, Торт = 2, Кексы = 3
