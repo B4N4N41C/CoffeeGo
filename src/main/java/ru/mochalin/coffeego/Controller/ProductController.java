@@ -1,6 +1,7 @@
 package ru.mochalin.coffeego.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -8,15 +9,20 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.mochalin.coffeego.Model.Product;
 import ru.mochalin.coffeego.Repository.ProductRepository;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.UUID;
 
 @Controller("/product")
 public class ProductController {
     @Autowired
     private ProductRepository productRepository;
+
+    @Value("${upload.path}")
+    private String uploadPath;
 
     public static String PATH_IN_STATIC = "/img/products/";
     public static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/src/main/resources/static" + PATH_IN_STATIC;
@@ -28,10 +34,19 @@ public class ProductController {
     }
 
     @PostMapping("/edit")
-    public String edit(Model model, @ModelAttribute("product") Product product, @RequestParam("imageProduct") MultipartFile image) throws IOException {
-        product.setImage(PATH_IN_STATIC + image.getOriginalFilename());
-        Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, image.getOriginalFilename());
-        Files.write(fileNameAndPath, image.getBytes());
+    public String edit(Model model, @ModelAttribute("product") Product product, @RequestParam("file") MultipartFile file)
+            throws IOException {
+        File uploadDir = new File(uploadPath);
+        if (!uploadDir.exists()) {
+            uploadDir.mkdirs();
+        }
+
+        String uuidFile = UUID.randomUUID().toString();
+        String resultFilename = uuidFile + "." + file.getOriginalFilename();
+
+        file.transferTo(new File(uploadPath + resultFilename));
+        product.setImage(resultFilename);
+
         productRepository.save(product);
         return "redirect:/";
     }
@@ -41,6 +56,4 @@ public class ProductController {
         model.addAttribute("product", new Product());
         return "create-product";
     }
-
-    // TODO: Реализовать загрузку фото массивом байт потому, потому что позсле загрузки новой фотографии в static необходимо перезагружать сервер
 }

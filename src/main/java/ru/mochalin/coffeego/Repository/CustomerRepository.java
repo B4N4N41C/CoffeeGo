@@ -7,4 +7,5 @@ import ru.mochalin.coffeego.Model.Customer;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
+
 }

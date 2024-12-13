@@ -26,5 +26,9 @@ public class Customer {
     @OneToMany(mappedBy = "сustomer")
     private List<Bill> bills;
     @ManyToMany
+    @JoinTable(
+            name = "product_customer",
+            joinColumns = @JoinColumn(name = "customer_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
     private List<Product> products;
 }

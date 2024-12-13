@@ -34,7 +34,8 @@
 <div class="row row-cols-1 row-cols-md-1 g-4" th:each="product : ${products}">
     <div class="col">
         <div class="card">
-            <img th:src="${product.image}" class="card-img-top" th:alt="${product.image}">
+<!--            <img th:src="@{${product.image}}" class="card-img-top" th:alt="${product.image}">-->
+            <img th:src="@{'/img/' + ${product.image}}">
             <div class="card-body">
                 <h5 class="card-title" th:text="${product.name}"></h5>
                 <p class="card-text" th:text="${product.description}"></p>

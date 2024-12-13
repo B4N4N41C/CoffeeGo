@@ -20,7 +20,7 @@ INSERT INTO bill (customer_id, total_price) VALUES
 
 -- Заполнение таблицы product
 INSERT INTO product (name, description, image, price, bill_id) VALUES
-                                                                                   ('Пирог', 'Вкусный яблочный пирог', 'image_pie.jpg', 500, 1),  -- ID чека 1 и покупателя 1
+                                                                                   ('Пирог', 'Вкусный яблочный пирог', '/img/products/1707316438_furman-top-p-oboi-na-rabochii-stol-khayao-miyadzaki-vko-12.jpg', 500, 1),  -- ID чека 1 и покупателя 1
                                                                                    ('Торт', 'Шоколадный торт', 'image_cake.jpg', 700, 2),      -- ID чека 2 и покупателя 2
                                                                                    ('Кексы', 'Ванильные кексы', 'image_cupcakes.jpg', 300, 3); -- ID чека 3 и покупателя 1
 

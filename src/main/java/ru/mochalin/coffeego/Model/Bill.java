@@ -30,5 +30,11 @@ public class Bill {
     private Customer сustomer;
     // TODO: Сделать это поле вычесляемым
     private double totalPrice;
+
+    public double getTotalPrice() {
+
+        return totalPrice;
+    }
+
     private String status;
 }

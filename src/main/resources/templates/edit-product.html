@@ -17,19 +17,16 @@
         <label for="name" class="form-label">Имя</label>
         <input type="text" id="description" th:field="*{description}" class="form-control" required>
     </div>
-    <input type="file" name="imageProduct" accept="image/*" class="form-control-file">
+    <input type="file" name="file" class="form-control-file">
     <div class="mb-3">
         <label for="name" class="form-label">Имя</label>
         <input type="text" id="ingredient" th:field="*{ingredient}" class="form-control" required>
     </div>
     <div class="mb-3">
         <label for="name" class="form-label">Имя</label>
-        <input type="text" id="receipt_id" th:field="*{receipt.id}" class="form-control" required>
+        <input type="text" id="receipt_id" th:field="*{bill.id}" class="form-control" required>
     </div>
-    <div class="mb-3">
-        <label for="name" class="form-label">Имя</label>
-        <input type="text" id="name-customer" th:field="*{сustomer.name}" class="form-control" required>
-    </div>
+
     <button type="submit" class="btn btn-primary">Отправить</button>
     <button type="reset" class="btn btn-secondary">Сброс</button>
 </form>
