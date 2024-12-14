@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <link href="/css/bootstrap.css" rel="stylesheet">
-    <title>Админ-панель</title>
+    <link href="/css/all.css" rel="stylesheet">
+    <title>Детали</title>
 </head>
 <body>
 <header>
@@ -30,19 +31,14 @@
         </div>
     </nav>
 </header>
-<a th:href="@{'/product/create'}" class="btn btn-primary">Создать</a>
 <div class="container">
-    <div class="row row-cols-auto">
-        <div class="col"  th:each="product : ${products}">
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" th:src="@{'/img/' + ${product.image}}">
-                <div class="card-body">
-                    <h5 class="card-title" th:text="${product.name}"></h5>
-                    <p class="card-text" th:text="${product.description}"></p>
-                    <a th:href="@{'/product/edit/' + ${product.id}}" class="btn btn-primary">Редактировать</a>
-                </div>
-            </div>
-        </div>
+    <img class="card-img-top" th:src="@{'/img/' + ${product.image}}">
+    <strong>Название:</strong> <span th:text="${product.name}"></span><br>
+    <strong>Описание:</strong> <span th:text="${product.description}"></span><br>
+    <strong>Цена:</strong> <span th:text="${product.price}"></span><br>
+    <strong>Ингредиенты:</strong>
+    <div th:each="ingredient : ${product.ingredient}">
+        <p th:text="${ingredient.name}"></p>
     </div>
 </div>
 <script src="/js/bootstrap.js"></script>

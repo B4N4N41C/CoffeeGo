@@ -11,12 +11,10 @@ import ru.mochalin.coffeego.Repository.ProductRepository;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.UUID;
 
-@Controller("/product")
+@Controller
+@RequestMapping("/product")
 public class ProductController {
     @Autowired
     private ProductRepository productRepository;
@@ -28,7 +26,7 @@ public class ProductController {
     public static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/src/main/resources/static" + PATH_IN_STATIC;
 
     @GetMapping("/edit/{id}")
-    public String edit(Model model, @PathVariable("id") Long id) {
+    public String editPage(Model model, @PathVariable("id") Long id) {
         model.addAttribute("product", productRepository.findById(id).get());
         return "edit-product";
     }
@@ -36,6 +34,34 @@ public class ProductController {
     @PostMapping("/edit")
     public String edit(Model model, @ModelAttribute("product") Product product, @RequestParam("file") MultipartFile file)
             throws IOException {
+        saveImg(product, file);
+
+        productRepository.save(product);
+        return "redirect:/";
+    }
+
+    @GetMapping("/create")
+    public String createPage(Model model) {
+        model.addAttribute("product", new Product());
+        return "create-product";
+    }
+
+    @PostMapping("/create")
+    public String create(Model model, @ModelAttribute("product") Product product, @RequestParam("file") MultipartFile file)
+            throws IOException {
+        saveImg(product, file);
+
+        productRepository.save(product);
+        return "redirect:/";
+    }
+
+    @GetMapping("/detail/{id}")
+    public String detail(Model model, @ModelAttribute("product") Product product, @PathVariable("id") Long id) {
+        model.addAttribute("product", productRepository.findById(id).get());
+        return "detail-product";
+    }
+
+    private void saveImg(Product product, MultipartFile file) throws IOException {
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists()) {
             uploadDir.mkdirs();
@@ -46,14 +72,5 @@ public class ProductController {
 
         file.transferTo(new File(uploadPath + resultFilename));
         product.setImage(resultFilename);
-
-        productRepository.save(product);
-        return "redirect:/";
-    }
-
-    @GetMapping("/create")
-    public String create(Model model) {
-        model.addAttribute("product", new Product());
-        return "create-product";
     }
 }

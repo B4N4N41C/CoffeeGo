@@ -27,6 +27,6 @@ public class MainController {
     @GetMapping("/card/{id}")
     public String card(Model model, @PathVariable Long id) {
 		model.addAttribute("products", productRepository.findByCustomers_Id(id));
-        return "card";
+        return "cart";
     }
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import ru.mochalin.coffeego.Model.Customer;
 import ru.mochalin.coffeego.Model.Product;
 import ru.mochalin.coffeego.Repository.CustomerRepository;
@@ -13,7 +14,8 @@ import ru.mochalin.coffeego.Repository.ProductRepository;
 import java.util.List;
 import java.util.Optional;
 
-@Controller("/customer")
+@Controller
+@RequestMapping("/customer")
 public class CustomerController {
     @Autowired
     private CustomerRepository customerRepository;

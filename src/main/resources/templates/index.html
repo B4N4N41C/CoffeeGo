@@ -31,14 +31,17 @@
         </div>
     </nav>
 </header>
-<div class="row row-cols-1 row-cols-md-2 g-4" th:each="product : ${products}">
-    <div class="col">
-        <div class="card">
-            <img th:src="${product.image}" class="card-img-top" th:alt="product.">
-            <div class="card-body">
-                <h5 class="card-title" th:text="${product.name}"></h5>
-                <p class="card-text" th:text="${product.description}"></p>
-                <a th:href="@{'/add-product/' + ${product.id}}" class="btn btn-primary">Добавить в карзину</a>
+<div class="container">
+    <div class="row row-cols-auto">
+        <div class="col" th:each="product : ${products}">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" th:src="@{'/img/' + ${product.image}}">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${product.name}"></h5>
+                    <p class="card-text" th:text="${product.description}"></p>
+                    <a th:href="@{'/add-product/' + ${product.id}}" class="btn btn-primary">Добавить в карзину</a>
+                    <a th:href="@{'/product/detail/' + ${product.id}}" class="btn btn-primary">Подробнее</a>
+                </div>
             </div>
         </div>
     </div>

@@ -5,28 +5,48 @@
     <title>Edit</title>
 </head>
 <body>
-<form action="#"  th:action="@{/edit}" th:object="${product}" method="post" enctype="multipart/form-data">
+<header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin">Админ панель</a>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+</header>
+<form action="#"  th:action="@{/product/edit}" th:object="${product}" method="post" enctype="multipart/form-data">
     <input type="hidden" th:field="*{id}">
     <input type="hidden" id="image" th:field="*{image}" class="form-control">
 
     <div class="mb-3">
-        <label for="name" class="form-label">Имя</label>
+        <label for="name" class="form-label">Название</label>
         <input type="text" id="name" th:field="*{name}" class="form-control" required>
     </div>
     <div class="mb-3">
-        <label for="name" class="form-label">Имя</label>
+        <label for="name" class="form-label">Описание</label>
         <input type="text" id="description" th:field="*{description}" class="form-control" required>
     </div>
     <input type="file" name="file" class="form-control-file">
     <div class="mb-3">
-        <label for="name" class="form-label">Имя</label>
+        <label for="name" class="form-label">Инградиенты</label>
         <input type="text" id="ingredient" th:field="*{ingredient}" class="form-control" required>
     </div>
-    <div class="mb-3">
-        <label for="name" class="form-label">Имя</label>
-        <input type="text" id="receipt_id" th:field="*{bill.id}" class="form-control" required>
-    </div>
-
+    <input type="hidden" id="receipt_id" th:field="*{bill.id}" class="form-control" required>
     <button type="submit" class="btn btn-primary">Отправить</button>
     <button type="reset" class="btn btn-secondary">Сброс</button>
 </form>
