@@ -22,9 +22,6 @@ public class ProductController {
     @Value("${upload.path}")
     private String uploadPath;
 
-    public static String PATH_IN_STATIC = "/img/products/";
-    public static String UPLOAD_DIRECTORY = System.getProperty("user.dir") + "/src/main/resources/static" + PATH_IN_STATIC;
-
     @GetMapping("/edit/{id}")
     public String editPage(Model model, @PathVariable("id") Long id) {
         model.addAttribute("product", productRepository.findById(id).get());
