@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Edit</title>
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/all.css" rel="stylesheet">
 </head>
 <body>
 <header>
@@ -36,6 +38,10 @@
     <div class="mb-3">
         <label for="name" class="form-label">Описание</label>
         <input type="text" id="description" th:field="*{description}" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label">Цена:</label>
+        <input type="text" id="price" th:field="*{price}" class="form-control" required>
     </div>
     <input type="file" name="file" class="form-control-file">
     <div class="mb-3">
