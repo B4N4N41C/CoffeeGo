@@ -1,8 +1,8 @@
 -- Заполнение таблицы customer
 INSERT INTO customer (name, phone, password, email, is_courier, is_admin) VALUES
-                                                                              ('Иван Иванов', '+79991234567', 'password123', 'ivan@example.com', false, false),
-                                                                              ('Мария Петрова', '+79997654321', 'mypassword', 'maria@example.com', true, false),
-                                                                              ('Алексей Смирнов', '+79993456789', 'alexeypass', 'alexey@example.com', false, true);
+                                                                              ('Иван Иванов', '+79991234567', '$2a$12$Y5t99dC1ZMbpMVKDAVufHusXaJtj4kxmm7C25BK06r246e3bwt/Ni', 'ivan@example.com', false, false),
+                                                                              ('Мария Петрова', '+79997654321', '$2a$12$Y5t99dC1ZMbpMVKDAVufHusXaJtj4kxmm7C25BK06r246e3bwt/Ni', 'maria@example.com', true, false),
+                                                                              ('Алексей Смирнов', '+79993456789', '$2a$12$Y5t99dC1ZMbpMVKDAVufHusXaJtj4kxmm7C25BK06r246e3bwt/Ni', 'alexey@example.com', false, true);
 
 -- Заполнение таблицы ingredient
 INSERT INTO ingredient (name, type) VALUES
