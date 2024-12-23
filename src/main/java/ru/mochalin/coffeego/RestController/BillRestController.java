@@ -9,11 +9,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/bills")
-public class BillController {
+public class BillRestController {
 
     private final BillRepository billRepository;
 
-    public BillController(BillRepository billRepository) {
+    public BillRestController(BillRepository billRepository) {
         this.billRepository = billRepository;
     }
 

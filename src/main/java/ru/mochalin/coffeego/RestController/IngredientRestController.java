@@ -9,11 +9,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/ingredients")
-public class IngredientController {
+public class IngredientRestController {
 
     private final IngredientRepository ingredientRepository;
 
-    public IngredientController(IngredientRepository ingredientRepository) {
+    public IngredientRestController(IngredientRepository ingredientRepository) {
         this.ingredientRepository = ingredientRepository;
     }
 
