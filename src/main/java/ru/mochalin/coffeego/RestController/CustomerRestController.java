@@ -1,4 +1,4 @@
-package ru.mochalin.coffeego.ControllerApi;
+package ru.mochalin.coffeego.RestController;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

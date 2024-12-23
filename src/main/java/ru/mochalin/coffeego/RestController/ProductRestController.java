@@ -1,4 +1,4 @@
-package ru.mochalin.coffeego.ControllerApi;
+package ru.mochalin.coffeego.RestController;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +19,7 @@ public class ProductController {
 
     @GetMapping
     public ResponseEntity<List<Product>> getAllProducts() {
-        return ResponseEntity.ok(productRepository.findAll());
+        return ResponseEntity.ok((List<Product>) productRepository.findAll());
     }
 
     @GetMapping("/{id}")
