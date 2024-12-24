@@ -22,6 +22,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/admin">Админ панель</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Выход</a>
+                    </li>
                 </ul>
                 <form action="#" th:action="@{/find}" class="d-flex"  method="post" >
                     <input class="form-control me-2" type="text" placeholder="Поиск"  th:field="*{product.name}">
@@ -45,7 +48,7 @@
             </div>
         </div>
     </div>
-    <a href="/cart/1" style="right: 40px; bottom: 40px; font-size: 32px" class="position-fixed translate-middle fas fa-shopping-cart fa-lg"></a>
+    <a href="/cart" style="right: 40px; bottom: 40px; font-size: 32px" class="position-fixed translate-middle fas fa-shopping-cart fa-lg"></a>
 </div>
 <script src="/js/bootstrap.js"></script>
 </body>

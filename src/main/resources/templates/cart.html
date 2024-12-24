@@ -31,33 +31,43 @@
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead>
-            <tr>
-                <th scope="col">Товар</th>
-                <th scope="col">Цена</th>
-                <th scope="col">Действия</th>
-            </tr>
+                <tr>
+                    <th scope="col">Товар</th>
+                    <th scope="col">Цена</th>
+                    <th scope="col">Количество</th>
+                    <th scope="col">Сумма</th>
+                    <th scope="col">Действия</th>
+                </tr>
             </thead>
             <tbody>
-            <tr th:each="product : ${products}">
-                <td>
-                </td>
-                <td>
-                    <div class="d-flex align-items-center">
-                        <img th:src="${product.image}" th:alt="${product.name}" class="me-3">
-                        <span th:text="${product.name}"></span>
-                    </div>
-                </td>
-                <td th:text="${product.price}"></td>
-                <td>
-                    <a class="btn btn-danger btn-sm" th:href="@{'/delete/' + ${product.id}}">Удалить</a>
-                </td>
-            </tr>
+                <tr th:each="product : ${products}">
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <!-- <img th:src="@{'/img/' + ${product.image}}" th:alt="${product.name}" class="me-3" style="width: 50px; height: 50px;"> -->
+                            <span th:text="${product.name}"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <span th:text="${product.price}"></span> ₽
+                    </td>
+                    <td>
+                        <span th:text="${productQuantities.get(product)}"></span>
+                    </td>
+                    <td>
+                        <span th:text="${product.price * productQuantities.get(product)}"></span> ₽
+                    </td>
+                    <td>
+                        <a class="btn btn-danger btn-sm" th:href="@{'/delete/' + ${product.id}}">Удалить</a>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
 
     <div class="d-flex justify-content-between mt-4">
-        <h3>Общая сумма: 2500 ₽</h3>
+        <h3>Общая сумма: 
+            <span th:text="${total}"></span> ₽
+        </h3>
         <button class="btn btn-primary">Перейти к оформлению</button>
     </div>
 </div>

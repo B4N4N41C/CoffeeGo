@@ -16,10 +16,16 @@ import org.springframework.security.web.SecurityFilterChain;
 public class WebSecurityConfig {
    @Bean
    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-       http
-               .authorizeHttpRequests((auth) -> auth
-                       .anyRequest().authenticated())
-               .formLogin(Customizer.withDefaults());
+      http
+      .authorizeHttpRequests((auth) -> auth
+              .anyRequest().authenticated())
+      .formLogin(Customizer.withDefaults())
+      .logout(logout -> logout
+              .logoutUrl("/logout")
+              .logoutSuccessUrl("/")
+              .invalidateHttpSession(true)
+              .deleteCookies("JSESSIONID")
+      );
        return http.build();
    }
     @Bean

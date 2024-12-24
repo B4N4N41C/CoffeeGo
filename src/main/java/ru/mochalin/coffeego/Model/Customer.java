@@ -24,6 +24,7 @@ public class Customer implements UserDetails{
     private String name;
     private String phone;
     private String password;
+    @Column(unique = true, nullable = false)
     private String email;
     private boolean isCourier;
     private boolean isAdmin;

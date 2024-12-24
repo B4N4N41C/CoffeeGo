@@ -1,21 +1,33 @@
 package ru.mochalin.coffeego.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import jakarta.persistence.EntityNotFoundException;
+import ru.mochalin.coffeego.Model.Customer;
 import ru.mochalin.coffeego.Model.Product;
+import ru.mochalin.coffeego.Repository.CustomerRepository;
 import ru.mochalin.coffeego.Repository.ProductRepository;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Controller
 public class MainController {
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private CustomerRepository customerRepository;
 
     @GetMapping("/")
     public String index(Model model) {
@@ -30,10 +42,42 @@ public class MainController {
         return "admin";
     }
 
-    @GetMapping("/cart/{id}")
-    public String cart(Model model, @PathVariable Long id) {
-		model.addAttribute("products", productRepository.findByCustomers_Id(id));
-        return "cart";
+    // @GetMapping("/cart/{id}")
+    // public String cart(Model model, @PathVariable Long id) {
+	// 	model.addAttribute("products", productRepository.findByCustomers_Id(id));
+    //     return "cart";
+    // }
+
+    @GetMapping("/cart")
+    public String cart(Model model) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        Optional<Customer> emailOptional = customerRepository.findByEmail(email);
+        if (emailOptional.isPresent()) {
+            Customer customer = emailOptional.get();
+            List<Object[]> results = productRepository.findProductsWithCountByCustomerId(customer.getId());
+            List<Product> products = new ArrayList<>();
+            Map<Product, Integer> productQuantities = new HashMap<>();  // To store quantity without modifying the product
+
+            for (Object[] result : results) {
+                Product product = (Product) result[0];
+                int count = ((Long) result[1]).intValue();
+                productQuantities.put(product, count); // Store the quantity of each product
+                products.add(product);
+            }
+
+            int total = 0;
+            for (Product product : products) {
+                int quantity = productQuantities.get(product);  // Retrieve quantity from map
+                total += product.getPrice() * quantity;
+            }
+
+            model.addAttribute("products", products);
+            model.addAttribute("productQuantities", productQuantities);  // Add quantities to the model
+            model.addAttribute("total", total);
+            return "cart";
+        } else {
+            throw new EntityNotFoundException("Пользователь не найден");
+        }
     }
 
     @PostMapping("/find")
