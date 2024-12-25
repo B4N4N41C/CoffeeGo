@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import jakarta.persistence.EntityNotFoundException;
 import ru.mochalin.coffeego.Model.Customer;
 import ru.mochalin.coffeego.Model.Product;
 import ru.mochalin.coffeego.Repository.CustomerRepository;
@@ -36,5 +38,14 @@ public class CustomerController {
             customerRepository.save(customer);
         }
         return "redirect:/";
+    }
+
+    @GetMapping("/profile")
+    public String showProfile(Model model) {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        Customer customer = customerRepository.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException("Пользователь не найден"));
+        model.addAttribute("customer", customer);
+        return "profile";
     }
 }

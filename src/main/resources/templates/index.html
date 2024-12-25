@@ -23,8 +23,11 @@
                         <a class="nav-link" href="/admin">Админ панель</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/logout">Выход</a>
+                        <a class="nav-link" href="/customer/profile">Личный кабинет</a>
                     </li>
+                    <form th:action="@{/logout}" method="post">
+                        <button type="submit" class="btn btn-danger">Logout</button>
+                    </form>
                 </ul>
                 <form action="#" th:action="@{/find}" class="d-flex"  method="post" >
                     <input class="form-control me-2" type="text" placeholder="Поиск"  th:field="*{product.name}">

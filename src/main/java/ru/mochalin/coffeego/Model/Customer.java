@@ -26,8 +26,6 @@ public class Customer implements UserDetails{
     private String password;
     @Column(unique = true, nullable = false)
     private String email;
-    private boolean isCourier;
-    private boolean isAdmin;
     @OneToMany(mappedBy = "сustomer")
     private List<Bill> bills;
     @ManyToMany

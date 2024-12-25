@@ -18,11 +18,16 @@ public class WebSecurityConfig {
    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
       http
       .authorizeHttpRequests((auth) -> auth
+              .requestMatchers("/login", "/register", "/logout").permitAll()
               .anyRequest().authenticated())
-      .formLogin(Customizer.withDefaults())
+      .formLogin(form -> form
+        .loginPage("/login")
+        .defaultSuccessUrl("/", true) 
+        .permitAll())
       .logout(logout -> logout
               .logoutUrl("/logout")
-              .logoutSuccessUrl("/")
+              .logoutSuccessUrl("/login")
+              .permitAll()
               .invalidateHttpSession(true)
               .deleteCookies("JSESSIONID")
       );

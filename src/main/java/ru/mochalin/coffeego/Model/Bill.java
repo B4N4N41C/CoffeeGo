@@ -28,7 +28,7 @@ public class Bill {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
     private Customer сustomer;
-    // TODO: Сделать это поле вычесляемым
+
     private double totalPrice;
 
     public double getTotalPrice() {
