@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -42,12 +41,6 @@ public class MainController {
         return "admin";
     }
 
-    // @GetMapping("/cart/{id}")
-    // public String cart(Model model, @PathVariable Long id) {
-	// 	model.addAttribute("products", productRepository.findByCustomers_Id(id));
-    //     return "cart";
-    // }
-
     @GetMapping("/cart")
     public String cart(Model model) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -56,23 +49,23 @@ public class MainController {
             Customer customer = emailOptional.get();
             List<Object[]> results = productRepository.findProductsWithCountByCustomerId(customer.getId());
             List<Product> products = new ArrayList<>();
-            Map<Product, Integer> productQuantities = new HashMap<>();  // To store quantity without modifying the product
+            Map<Product, Integer> productQuantities = new HashMap<>();
 
             for (Object[] result : results) {
                 Product product = (Product) result[0];
                 int count = ((Long) result[1]).intValue();
-                productQuantities.put(product, count); // Store the quantity of each product
+                productQuantities.put(product, count);
                 products.add(product);
             }
 
             int total = 0;
             for (Product product : products) {
-                int quantity = productQuantities.get(product);  // Retrieve quantity from map
+                int quantity = productQuantities.get(product);
                 total += product.getPrice() * quantity;
             }
 
             model.addAttribute("products", products);
-            model.addAttribute("productQuantities", productQuantities);  // Add quantities to the model
+            model.addAttribute("productQuantities", productQuantities);
             model.addAttribute("total", total);
             return "cart";
         } else {

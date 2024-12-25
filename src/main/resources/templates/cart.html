@@ -64,12 +64,14 @@
         </table>
     </div>
 
-    <div class="d-flex justify-content-between mt-4">
-        <h3>Общая сумма: 
-            <span th:text="${total}"></span> ₽
-        </h3>
-        <button class="btn btn-primary">Перейти к оформлению</button>
-    </div>
+    <form th:action="@{/checkout}" method="post">
+        <div class="d-flex justify-content-between mt-4">
+            <h3>Общая сумма: 
+                <span th:text="${total}"></span> ₽
+            </h3>
+            <button type="submit" class="btn btn-primary">Оформить заказ</button>
+        </div>
+    </form>    
 </div>
 <script src="/js/bootstrap.js"></script>
 </body>

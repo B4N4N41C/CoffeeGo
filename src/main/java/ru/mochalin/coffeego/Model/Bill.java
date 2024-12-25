@@ -8,10 +8,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -31,10 +35,11 @@ public class Bill {
 
     private double totalPrice;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date orderDate = new Date();
+
     public double getTotalPrice() {
 
         return totalPrice;
     }
-
-    private String status;
 }
